@@ -2,7 +2,7 @@ services:
   # MongoDB for Graylog
   mongo:
     image: mongo:5.0
-    container_name: graylog_mongo
+    container_name: graylog_mongo_v2
     restart: unless-stopped
     networks:
       - my_network
@@ -53,7 +53,7 @@ services:
   # Graylog
   graylog:
     image: graylog/graylog:6.3.1
-    container_name: graylog_server
+    container_name: graylog_server_v2
     restart: unless-stopped
     environment:
       - GRAYLOG_PASSWORD_SECRET=${GRAYLOG_PASSWORD_SECRET}
@@ -89,7 +89,7 @@ services:
   # MySQL Database
   mysql:
     image: mysql:8.0
-    container_name: mysql_db
+    container_name: mysql_db_v2
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -114,7 +114,7 @@ services:
     build: 
       context: .
       dockerfile: FlaskApp.Dockerfile
-    container_name: flask_app
+    container_name: flask_app_v2
     restart: unless-stopped
     env_file:
       - .env
@@ -133,7 +133,7 @@ services:
   # Nginx Reverse Proxy
   nginx:
     image: nginx:latest
-    container_name: nginx_proxy
+    container_name: nginx_proxy_v2
     restart: unless-stopped
     ports:
       - "80:80"
